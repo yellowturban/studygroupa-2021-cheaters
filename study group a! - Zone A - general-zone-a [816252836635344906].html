@@ -1,0 +1,5029 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>study group a! - general-zone-a</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">study group a!</div>
+        <div class="preamble__entry">Zone A / general-zone-a</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-21 06:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="816253700922277908" id="message-816253700922277908">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This category is for Zone A, refresher on zones <a href="https://london.ac.uk/sites/default/files/leaflets/country-bands.pdf">https://london.ac.uk/sites/default/files/leaflets/country-bands.pdf</a>, please only be in each category if you&#39;re in that particular zone as to not confuse.</span>
+
+                                <span class="chatlog__edited-timestamp" title="02-Mar-21 06:21 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/27aeb7df2b0bf280c98af68756992406-01964.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Oreo#3774" data-user-id="720250455216881724" style="color: rgb(255,117,0)">Oreo</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-21 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="816261207040196650" id="message-816261207040196650">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="Amusing" title="Amusing" src="https://cdn.discordapp.com/emojis/805170769885397032.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/8350efd4dc0881d7c6216515cc3e8471-29B9C.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="bready#0021" data-user-id="671760306271289345" style="color: rgb(255,117,0)">itachi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-21 06:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="816261386648420393" id="message-816261386648420393">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="2941_gojou_carefree" title="2941_gojou_carefree" src="https://cdn.discordapp.com/emojis/805170768274522112.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jamie#2269" data-user-id="626181946686570498" style="color: rgb(0,88,255)">kjaz</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-21 12:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="816341417253142618" id="message-816341417253142618">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">that list will have to change for this year, i think. Western hemisphere countries like Canada/US are in zone B which means my exam would be 1am my time</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-21 12:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="816341850955710515" id="message-816341850955710515">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hmm they should have made the timespan for exams longer since seems like their ideas may not accommodate a lot of students</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816341949010280502" id="message-816341949010280502">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">They might change time and length of exam if enough complications</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jamie#2269" data-user-id="626181946686570498" style="color: rgb(0,88,255)">kjaz</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-21 12:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="816343414450815028" id="message-816343414450815028">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah, ive sent them an enquiry to find out if that is correct or not</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816343506581848064" id="message-816343506581848064">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">maybe they will update the list. Would rather they extend the exam to 24 hours though lol</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0339d7caa9fb43e28e5e027d727a0620-04B43.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A A#4760" data-user-id="707462099072450674" style="color: rgb(255,117,0)">Tom</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-21 12:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="816345806483095552" id="message-816345806483095552">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I doubt they will but hopefully they do make it 24 hours</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">04-Mar-21 02:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="816921519103934474" id="message-816921519103934474">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Does anyone have asset pricing SIM Mock 2021?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/27aeb7df2b0bf280c98af68756992406-01964.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Oreo#3774" data-user-id="720250455216881724" style="color: rgb(255,117,0)">Oreo</span>
+
+
+        <span class="chatlog__timestamp">04-Mar-21 03:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="816937062053707818" id="message-816937062053707818">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Not that I know of</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816937189547966495" id="message-816937189547966495">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Should we have servers for modules for zone a</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">04-Mar-21 03:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="816942095305801768" id="message-816942095305801768">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Oreo#3774">@Oreo</span> good idea</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/27aeb7df2b0bf280c98af68756992406-01964.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Oreo#3774" style="color: rgb(255,117,0)">Oreo</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;816937189547966495&#39;)">
+                    <span class="chatlog__reference-content">
+Should we have servers for modules for zone a                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">04-Mar-21 03:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="816943004379119626" id="message-816943004379119626">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Channels under each category for exams? I can make categories only viewable if you have the zone a/b role as well</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/1f44d-1485B.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c1b4eaffe9ee3e1fbb9fd31a59a83d8f-3B482.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Columbia900#9413" data-user-id="720584125945348096" style="color: rgb(255,117,0)">Columbia900</span>
+
+
+        <span class="chatlog__timestamp">07-Mar-21 03:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="817837311546753024" id="message-817837311546753024">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Im ZONE A✌<img class="emoji " alt="🏻" title="🏻" src="https://twemoji.maxcdn.com/2/72x72/1f3fb.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="819589063782563861" id="message-819589063782563861">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Im zone A too</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819589074515394630" id="message-819589074515394630">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="🥳" title="🥳" src="https://twemoji.maxcdn.com/2/72x72/1f973.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/27aeb7df2b0bf280c98af68756992406-01964.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Oreo#3774" data-user-id="720250455216881724" style="color: rgb(255,117,0)">Oreo</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="819589834322477116" id="message-819589834322477116">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Microeconomics anyone?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">13-Mar-21 08:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="820268601507708928" id="message-820268601507708928">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yes me</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">14-Mar-21 01:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="820340873917104148" id="message-820340873917104148">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Me too</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/27aeb7df2b0bf280c98af68756992406-01964.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Oreo#3774" style="color: rgb(255,117,0)">Oreo</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;819589834322477116&#39;)">
+                    <span class="chatlog__reference-content">
+Microeconomics anyone?                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c1b4eaffe9ee3e1fbb9fd31a59a83d8f-3B482.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Columbia900#9413" data-user-id="720584125945348096" style="color: rgb(255,117,0)">Columbia900</span>
+
+
+        <span class="chatlog__timestamp">15-Mar-21 02:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="820718305521434656" id="message-820718305521434656">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">me</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">15-Mar-21 11:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="821040545241628692" id="message-821040545241628692">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Anyone in asset pricing?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">16-Mar-21 07:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="821341505154187294" id="message-821341505154187294">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Can someone send SIM 2021 asset pricing</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821341514172989492" id="message-821341514172989492">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Please</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">16-Mar-21 09:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="821375989434679327" id="message-821375989434679327">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 07:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="821893935810084876" id="message-821893935810084876">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Is anyone in ebiz</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">23-Mar-21 08:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="823903733787525131" id="message-823903733787525131">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Anyone in asset pricing pls msg me</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jamie#2269" data-user-id="626181946686570498" style="color: rgb(0,88,255)">kjaz</span>
+
+
+        <span class="chatlog__timestamp">23-Mar-21 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="823906841155076116" id="message-823906841155076116">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yep</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">24-Mar-21 01:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="823966927440314378" id="message-823966927440314378">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Anyone in management accounting</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">24-Mar-21 02:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="823992772905664522" id="message-823992772905664522">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I am</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">10-Apr-21 11:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="830468994586640414" id="message-830468994586640414">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Does anyone have asset pricing sim 2021 answers</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="830469003200692234" id="message-830469003200692234">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">10-Apr-21 11:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="830469448456470528" id="message-830469448456470528">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image0-F8DDB.png">
+                                        <img class="chatlog__attachment-thumbnail" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image0-F8DDB.png" alt="Image attachment" title="Image: image0.png (302.05 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image1-DB5FC.png">
+                                        <img class="chatlog__attachment-thumbnail" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image1-DB5FC.png" alt="Image attachment" title="Image: image1.png (367.51 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image2-1D980.png">
+                                        <img class="chatlog__attachment-thumbnail" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image2-1D980.png" alt="Image attachment" title="Image: image2.png (331.66 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image3-B2FAD.png">
+                                        <img class="chatlog__attachment-thumbnail" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/image3-B2FAD.png" alt="Image attachment" title="Image: image3.png (345.59 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">10-Apr-21 11:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="830469893534121994" id="message-830469893534121994">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thank you <span class="mention" title="momo94#7795">@momo94</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="830469937101275146" id="message-830469937101275146">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What about answers <span class="mention" title="momo94#7795">@momo94</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="830470001802608640" id="message-830470001802608640">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Do u have them?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="830470006461956126" id="message-830470006461956126">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Commentary of this paper <span class="mention" title="momo94#7795">@momo94</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">10-Apr-21 11:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="830470054025756703" id="message-830470054025756703">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I wish if could have it <img class="emoji " alt="😭" title="😭" src="https://twemoji.maxcdn.com/2/72x72/1f62d.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">10-Apr-21 11:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="830470819104423976" id="message-830470819104423976">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Same<img class="emoji " alt="🥺" title="🥺" src="https://twemoji.maxcdn.com/2/72x72/1f97a.png"><img class="emoji " alt="🥺" title="🥺" src="https://twemoji.maxcdn.com/2/72x72/1f97a.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 01:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="832301604052271114" id="message-832301604052271114">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Who else is in Zone A?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 01:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="832302155095343183" id="message-832302155095343183">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I am</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 07:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="832395432067203132" id="message-832395432067203132">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">zone a <img class="emoji " alt="👌" title="👌" src="https://twemoji.maxcdn.com/2/72x72/1f44c.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="2941_gojou_carefree" title="2941_gojou_carefree" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/805170768274522112-04743.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="1173_pikawoah" title="1173_pikawoah" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/727961060765859840-3FD37.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128131;" title="&#128131;" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/1f483-888FB.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="671508712468381696" title="671508712468381696" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/820638347139481630-719B8.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jamie#2269" data-user-id="626181946686570498" style="color: rgb(0,88,255)">kjaz</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 07:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="832580464879337532" id="message-832580464879337532">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zone A here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="welcome#4305" data-user-id="716679110356631553" style="color: rgb(0,88,255)">mac n cheese</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 08:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="832599473162551326" id="message-832599473162551326">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zone A!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">21-Apr-21 08:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="834411724354355250" id="message-834411724354355250">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">if anyone knows of more rumoured zone a people <img class="emoji " alt="2941_gojou_carefree" title="2941_gojou_carefree" src="https://cdn.discordapp.com/emojis/805170768274522112.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 01:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="834486892967886858" id="message-834486892967886858">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">zone a numbers are kinda weak, we can use more people</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="jacob supreme#6557" style="color: rgb(0,88,255)">mojo jojo</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;834411724354355250&#39;)">
+                    <span class="chatlog__reference-content">
+if anyone knows of more rumoured zone a people <img class="emoji " alt="2941_gojou_carefree" title="2941_gojou_carefree" src="https://cdn.discordapp.com/emojis/805170768274522112.png">                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 01:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="834487090900631572" id="message-834487090900631572">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">try reaching out to the people who are in this server but in active</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 11:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="834639069098147870" id="message-834639069098147870">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yall could also try to go for people who should be in zone a in the uol channel and recruit from there</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 12:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="834641563580891217" id="message-834641563580891217">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Karma647#0847">@Karma647</span> my fiend account is don&#39;t know got some problem so she created a new one.Now she wants to join in all the discord group</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 12:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="834642632701247499" id="message-834642632701247499">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">the uol one too? or just this one? <span class="mention" title="nazareth#1644">@bababudan</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="22-Apr-21 12:12 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 01:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="834663604359921675" id="message-834663604359921675">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The uol one and all</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="834664066906980372" id="message-834664066906980372">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ill dm you the links then</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-21 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="834664120552259625" id="message-834664120552259625">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Can thks</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="welcome#4305" data-user-id="716679110356631553" style="color: rgb(0,88,255)">mac n cheese</span>
+
+
+        <span class="chatlog__timestamp">25-Apr-21 09:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="835866627748528138" id="message-835866627748528138">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Can someone add me to asset pricing, principles of banking and finance and econometrics pls</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="835866878291083315" id="message-835866878291083315">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thanks <img class="emoji " alt="🙂" title="🙂" src="https://twemoji.maxcdn.com/2/72x72/1f642.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">25-Apr-21 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="835866879595511808" id="message-835866879595511808">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">youre in</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="835866895672279060" id="message-835866895672279060">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">anytime</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/98297e791fb47258b1005332fef52965-FD2CD.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Thembuk#2455" data-user-id="285140169873424386" style="color: rgb(0,88,255)">jotty</span>
+
+
+        <span class="chatlog__timestamp">27-Apr-21 05:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="836358628096344094" id="message-836358628096344094">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">can i be added to zone a - banking and finance+economics+ financial accounting and management accounting</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/98297e791fb47258b1005332fef52965-FD2CD.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Thembuk#2455" style="color: rgb(0,88,255)">jotty</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;836358628096344094&#39;)">
+                    <span class="chatlog__reference-content">
+can i be added to zone a - banking and finance+economics+ financial accounting and management accounting                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">27-Apr-21 03:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="836499258475282433" id="message-836499258475282433">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">intro to econ? and whats the full name of financial accounting?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/3-FB033.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Remi#3148" data-user-id="690587549898506321" style="color: rgb(0,88,255)">gambit</span>
+
+
+        <span class="chatlog__timestamp">28-Apr-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="836700586660855868" id="message-836700586660855868">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hey shall we create a group for micro/macro/ elements of Econometrics for zone A?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="836700621406601227" id="message-836700621406601227">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It might be helpful during the exam</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">28-Apr-21 04:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="836700979214286938" id="message-836700979214286938">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Huh the channels here are hidden unless you are doing that exam</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/1f44d-1485B.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/3-FB033.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Remi#3148" data-user-id="690587549898506321" style="color: rgb(0,88,255)">gambit</span>
+
+
+        <span class="chatlog__timestamp">28-Apr-21 04:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="836701728245547008" id="message-836701728245547008">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I’m doing them</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="836701893551325184" id="message-836701893551325184">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">How to enter into those Channels then?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">28-Apr-21 04:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="836702070165733447" id="message-836702070165733447">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh <span class="mention">#course-selection</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/3-FB033.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Remi#3148" data-user-id="690587549898506321" style="color: rgb(0,88,255)">gambit</span>
+
+
+        <span class="chatlog__timestamp">28-Apr-21 04:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="836702868668153886" id="message-836702868668153886">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thanks bro</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">28-Apr-21 08:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="836943234940010516" id="message-836943234940010516">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Link: <a href="http://chng.it/9kTyTkTxcD">http://chng.it/9kTyTkTxcD</a></em>
+
+<em><em>Please sign this petition:</em></em>
+
+<em>a. You are an Indian Student studying at UoL</em>
+
+<em>b. You are an UoL student empathising with the Indian Student Community during these trying times.</em>
+
+<em>About The Petition</em>: 
+
+We the students of India are standing together against the injustice that we are facing in our current circumstances given the timed <em>UoL Online Assessment 2021</em>. 
+
+COVID 19 has struck India once again. The system is crippled; especially in the last month where cases have risen 8 times. Students have been infected, are sick. They are losing their close ones, taking the onus of the family and the community while the cases are only increasing at a rapid rate in our country. 
+
+Despite raising all concerns through enquiries on the University of London Portal, the team has not taken fair measures and hence we have decided to stand together and start this petition.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Karma647#0847" style="color: rgb(255,117,0)">Karma647</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;836499258475282433&#39;)">
+                    <span class="chatlog__reference-content">
+intro to econ? and whats the full name of financial accounting?                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/98297e791fb47258b1005332fef52965-FD2CD.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Thembuk#2455" data-user-id="285140169873424386" style="color: rgb(0,88,255)">jotty</span>
+
+
+        <span class="chatlog__timestamp">29-Apr-21 02:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="837028122099712001" id="message-837028122099712001">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">hi yes sorry it is intro to econ and sorry its financial reporting i meant</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">29-Apr-21 09:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="837323995471937617" id="message-837323995471937617">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">GUYS I HAVE A GUY WHO CAN WRITE THE ALL THE UOL EXAMS RELATED TO FINANCE AND ACCOUNTS.....SO IF ANYONE OF YOU ALL NEED TO BOOK THAT GUY THEN DM ME.                                                                                                                         
+   1. THE GUY TAKES GUARANTEE OF DISTINCTION FOR ALL THE SUBJECTS 
+    EXCEPT FM.                                                                                                                                          2. 50% PAYMENT IN ADVANCE REST AFTER THE EXAM ( THIS WAY IT WILL BE 
+       FAIR TO BOTH THE SIDES)                                                                                                          3. EACH EXAM IS OF 10K INR (NO BARGAINING).                                                                     AGAIN DM ME IF YOU NEED ANY.                                                                                          
+            THANKS</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="837790398851973171" id="message-837790398851973171">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">GUYS I JUST GOT IN TOUCH WITH A GUY THAT CAN HELP US WRITE VALUATION AND SECURITY ANALYSIS AND INVESTMENT MANAGEMENT THE GUY IS 100% LEGIT AND HE IS ONLY TAKING 10 SLOTS HE WAS AN UOL TOPPER IN VSA AND IM . HE WILL GIVE YOU GUYS THE ANSWER PAPER YOU WILL JUST HAVE TO PHRASE IT PROPERLY HE IS CHARGING AROUND 20K PER PERSON ( CAN DROP TO 15K IF ALL SLOTS ARE FULL) AND YOU GUYS JUST HAVE TO PAY 30% NOW REST AFTER RESULTS.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791323721171024" id="message-837791323721171024">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">20k usd?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791345515036715" id="message-837791345515036715">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">no inr</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791390191845446" id="message-837791390191845446">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hmm</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791530529849365" id="message-837791530529849365">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">20K INR AND 30% IS 6K INR THATS 80 DOLLARS WORTH TAKING A SHOT</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837791547956527114" id="message-837791547956527114">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">TO BE ON A SAFER SIDE</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791563337826375" id="message-837791563337826375">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Why the caps xD</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791639870636042" id="message-837791639870636042">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">People take it more seriously</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791707793850378" id="message-837791707793850378">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nah caps are not taken too seriously I feel</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791785580757023" id="message-837791785580757023">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">doesnt matter dude but its worth taking a shot i mean</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837791818136944650" id="message-837791818136944650">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">these are 300 level scoring papers</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="837791936222855178" id="message-837791936222855178">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Worth taking a shot if you vet/grill him first</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837791977013510185" id="message-837791977013510185">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I mean technically you would make more by being legit though</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="837792126355374111" id="message-837792126355374111">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The thing is I came across people charging 75k inr too</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792139181031496" id="message-837792139181031496">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">per paper</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="837792285545463849" id="message-837792285545463849">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">No one would pay that</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="837792296362704989" id="message-837792296362704989">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">this guy was like 200k 2 papers and least he would go down is 150k so 10 people are better off</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792346250805258" id="message-837792346250805258">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">if we split the cost</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792388243652618" id="message-837792388243652618">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">it is 6k rn and remaining after the results</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792510096179200" id="message-837792510096179200">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">so he gets a payment of 60k inr if people are on board</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792518208225320" id="message-837792518208225320">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">he is happy</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792529377263726" id="message-837792529377263726">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">we are happy</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="837792600965644298" id="message-837792600965644298">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He will give one paper only?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="837792665285427262" id="message-837792665285427262">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He will give all the answers for im and vsa</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792745133310022" id="message-837792745133310022">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">and just phrase it in your own words</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837792820864614470" id="message-837792820864614470">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As soon as he is done with one question he will send</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837793194439737395" id="message-837793194439737395">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">and within 4 hours we will have the paper too</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="837794860487802920" id="message-837794860487802920">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I see pay after results</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837794875776303134" id="message-837794875776303134">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Interesting</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 04:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="837795028226015294" id="message-837795028226015294">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah i guess he is a bit confident about his skills</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837795170916892732" id="message-837795170916892732">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">like rest all are guaranteeing 70+ and taking payments in advance</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837795321530286140" id="message-837795321530286140">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">this guy will only take the complete payment if the particular student who booked a slot got the number of marks</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837795394053341195" id="message-837795394053341195">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">So its worth taking a 80 dollar risk</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837795433953624104" id="message-837795433953624104">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">and zone a zone b both are there</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837795635985252372" id="message-837795635985252372">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">like he got 83 in VSA and 92 in IM and the papers werent online</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837795639404396625" id="message-837795639404396625">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">so</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837795687894220820" id="message-837795687894220820">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I am still vetting him these papers have time</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Dealer 69#6105" style="">Dealer 69</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;837795635985252372&#39;)">
+                    <span class="chatlog__reference-content">
+like he got 83 in VSA and 92 in IM and the papers werent online                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 08:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="838022579049463808" id="message-838022579049463808">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Whats this about? #and btw guys how is it going with Asset pricing <img class="emoji " alt="😓" title="😓" src="https://twemoji.maxcdn.com/2/72x72/1f613.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="838024880791879710" id="message-838024880791879710">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">sucks dude</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838024939147755541" id="message-838024939147755541">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">wbu</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="838025020792897556" id="message-838025020792897556">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Am getting there but chapter 11 sucks</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="838027767386734638" id="message-838027767386734638">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">lets divide the chapters</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="838027846231261234" id="message-838027846231261234">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">that&#39;d be smart tbh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">01-May-21 08:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="838031512191631390" id="message-838031512191631390">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yeah please</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838031533184253962" id="message-838031533184253962">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It would be easier</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/3-FB033.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Remi#3148" data-user-id="690587549898506321" style="color: rgb(0,88,255)">gambit</span>
+
+
+        <span class="chatlog__timestamp">03-May-21 03:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="838671762111070218" id="message-838671762111070218">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hey guys anyone’s in contact with any tutor for micro/macro/elements of econ exams? (Zone a)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">03-May-21 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="838770327600889916" id="message-838770327600889916">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah but he is charging 20kinr</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="838850575642001448" id="message-838850575642001448">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">you guys idk how trustworthy that topper guy is. He made agreements privately with me then deleted his replies in my DMs and blocked me so I can&#39;t msg him. for no reason lol</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="838850690515992637" id="message-838850690515992637">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Same with my friend</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="838850726930415637" id="message-838850726930415637">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">oh really?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838850741242298378" id="message-838850741242298378">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">did your friend pay?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838850757725388831" id="message-838850757725388831">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="🤦" title="🤦" src="https://twemoji.maxcdn.com/2/72x72/1f926.png">‍♀️</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="838850801073389629" id="message-838850801073389629">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Reluctant to share his transcripts and all and then he blocked him</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838850819025535006" id="message-838850819025535006">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">No he dint pay</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="838850883902898200" id="message-838850883902898200">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">oh okay. good. for me, I made a deal with him and he fully agreed and all. no qualms or anything</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="838850890739220521" id="message-838850890739220521">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Beware of scam guys</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="838850937581600768" id="message-838850937581600768">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I just checked now and he&#39;s deleted the private msgs and blocked so</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838850957294436353" id="message-838850957294436353">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah beware guys</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851026042880081" id="message-838851026042880081">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">dudes just acting fishy lol</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="MadiTea#8574" style="color: rgb(0,88,255)">MadiTea</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;838850575642001448&#39;)">
+                    <span class="chatlog__reference-content">
+you guys idk how trustworthy that topper guy is. He made agreements privately with me then deleted his replies in my DMs and blocked me so I can&#39;t msg him. for no reason lol                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="838851065528713276" id="message-838851065528713276">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">who is topper?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/27aeb7df2b0bf280c98af68756992406-01964.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Oreo#3774" data-user-id="720250455216881724" style="color: rgb(255,117,0)">Oreo</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="838851071102681128" id="message-838851071102681128">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Im not taking my chances then</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="838851104481607690" id="message-838851104481607690">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah don&#39;t bother with him</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851115642650625" id="message-838851115642650625">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">topper is</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851154150293554" id="message-838851154150293554">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gamer&#39;s friend?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851327105695795" id="message-838851327105695795">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://discord.gg/TpZSajUe">https://discord.gg/TpZSajUe</a></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="838851348216414288" id="message-838851348216414288">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ah</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="838851354688094269" id="message-838851354688094269">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This is the link to the server gamer made</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851360778223627" id="message-838851360778223627">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851576390483998" id="message-838851576390483998">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Checked it out 2 days ago and the dudes fishy so <img class="emoji " alt="🤷" title="🤷" src="https://twemoji.maxcdn.com/2/72x72/1f937.png"> hoping no one fell for it. some people apparently paid up</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 02:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="838851724768313404" id="message-838851724768313404">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I guess someone might have otherwise they would shut down</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851795819298867" id="message-838851795819298867">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">They might have got some money and hence decided to run away</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838851822290337812" id="message-838851822290337812">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Wouldn&#39;t*</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854247575191562" id="message-838854247575191562">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I think we shouldn’t depend on them</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838854327011508235" id="message-838854327011508235">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Its risky</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854359902322710" id="message-838854359902322710">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Anyway help each other</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854375534231613" id="message-838854375534231613">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yes</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854384128360449" id="message-838854384128360449">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zone a guys can help zone b</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854386541265008" id="message-838854386541265008">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That works</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854407675838475" id="message-838854407675838475">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And vice versa</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854433617215523" id="message-838854433617215523">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yup</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838854533722538075" id="message-838854533722538075">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zone b paper is first i guess</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854536030322748" id="message-838854536030322748">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Can&#39;t we organise something</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/b5484b9e0adf2ea4f7eaa9bfd35b5bd5-03358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="money cake#1572" data-user-id="697198573896335381" style="color: rgb(255,117,0)">T</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854647002693643" id="message-838854647002693643">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As in</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="838854866340020244" id="message-838854866340020244">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">We can make a whatsapp group for micro in which only zA people will be there and one person from zB will send zone b paper in that group and ZA peeps can help us solve all the questions and</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838854912640548875" id="message-838854912640548875">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Vice versa for zone a</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="838856237109870632" id="message-838856237109870632">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">huh why use whatsapp when you can do that here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4a18d37813fbade0870975937abb1732-57D29.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MadiTea#8574" data-user-id="567995026479775744" style="color: rgb(0,88,255)">MadiTea</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="838857207533011024" id="message-838857207533011024">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">use the discord.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">04-May-21 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="838857268807598152" id="message-838857268807598152">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yeah that&#39;s fine too</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="838857362856869979" id="message-838857362856869979">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">But please do help guys ...I don&#39;t want people to vanish at the time of the exam tbh<img class="emoji " alt="😂" title="😂" src="https://twemoji.maxcdn.com/2/72x72/1f602.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="839391922816024578" id="message-839391922816024578">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Anyone is zone A for asset pricing??? Please say yes</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="839392004106223666" id="message-839392004106223666">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">i believe levi is</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="839392153813254185" id="message-839392153813254185">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yes</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="839392207324708885" id="message-839392207324708885">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Great <img class="emoji " alt="😭" title="😭" src="https://twemoji.maxcdn.com/2/72x72/1f62d.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839392223165677569" id="message-839392223165677569">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Anymore?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="839392332029100034" id="message-839392332029100034">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">i think there are 6 of zona ppl in apfm</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839392380968501279" id="message-839392380968501279">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">3 are not online rn</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/ad89c705842490898275d3f4bd7e8dab-41489.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="juspur#6026" data-user-id="497749700464738304" style="color: rgb(255,117,0)">gaston</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="839392625886756924" id="message-839392625886756924">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">wait so zone a and b are same questions?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="839392816744628244" id="message-839392816744628244">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">dont know, zone a has not been out yet</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839392875150311475" id="message-839392875150311475">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">but they will be similar</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/ad89c705842490898275d3f4bd7e8dab-41489.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="juspur#6026" data-user-id="497749700464738304" style="color: rgb(255,117,0)">gaston</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="839392976857858079" id="message-839392976857858079">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">oh okay different times as well</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="839393078753755136" id="message-839393078753755136">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/ad89c705842490898275d3f4bd7e8dab-41489.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="juspur#6026" style="color: rgb(255,117,0)">gaston</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;839392625886756924&#39;)">
+                    <span class="chatlog__reference-content">
+wait so zone a and b are same questions?                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/df95f85904865acc0942dfc21d20adbd-8A8CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Karma647#0847" data-user-id="320203106874818563" style="color: rgb(255,117,0)">Karma647</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 02:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="839393250309570571" id="message-839393250309570571">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">not the exact same, but they should be similar to zone b</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Levi Ackerman#2001" style="color: rgb(0,88,255)">Levi Ackerman</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;839392380968501279&#39;)">
+                    <span class="chatlog__reference-content">
+3 are not online rn                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 03:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="839401531185823745" id="message-839401531185823745">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hopefully will get through this <img class="emoji " alt="😣" title="😣" src="https://twemoji.maxcdn.com/2/72x72/1f623.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 03:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="839401945118539776" id="message-839401945118539776">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah, the paper is not easy ngl</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839401961848700958" id="message-839401961848700958">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">2020 was better</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 03:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="839402024512913430" id="message-839402024512913430">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yeah</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 03:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="839402088554692608" id="message-839402088554692608">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">chegg is our last hope</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 03:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="839402273503576068" id="message-839402273503576068">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To be honest chegg is doing well so far i think within 3 hours we should be done</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 03:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="839402413085687808" id="message-839402413085687808">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yeah, i aiming to finish it in 4 hrs max</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839402463705694208" id="message-839402463705694208">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">we shouldnt push it to the 5th hour</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839402538687135754" id="message-839402538687135754">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">hopefully the paper is very similar</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="momo94#7795" data-user-id="829755832048418890" style="color: rgb(0,88,255)">momo94</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 03:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="839402574754086953" id="message-839402574754086953">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yeah same the sooner the better</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="momo94#7795" style="color: rgb(0,88,255)">momo94</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;839391922816024578&#39;)">
+                    <span class="chatlog__reference-content">
+Anyone is zone A for asset pricing??? Please say yes                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jamie#2269" data-user-id="626181946686570498" style="color: rgb(0,88,255)">kjaz</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 07:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="839459370533650432" id="message-839459370533650432">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yep, im in</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128591;" title="&#128591;" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/1f64f-71468.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/0-EB806.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="welcome#4305" data-user-id="716679110356631553" style="color: rgb(0,88,255)">mac n cheese</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 08:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="839484961722990593" id="message-839484961722990593">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I&#39;m in</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/98297e791fb47258b1005332fef52965-FD2CD.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Thembuk#2455" data-user-id="285140169873424386" style="color: rgb(0,88,255)">jotty</span>
+
+
+        <span class="chatlog__timestamp">06-May-21 08:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="839848403868319764" id="message-839848403868319764">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Everyone ready?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/d3414c797fa312145f4f4a357f5ee58b-EE8D2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jacob supreme#6557" data-user-id="711212342792159322" style="color: rgb(0,88,255)">mojo jojo</span>
+
+
+        <span class="chatlog__timestamp">07-May-21 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="840215573841444865" id="message-840215573841444865">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">hope so</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="numnum99#7174" data-user-id="517271388109668364" style="color: rgb(255,117,0)">numnum99</span>
+
+
+        <span class="chatlog__timestamp">07-May-21 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="840215628241305600" id="message-840215628241305600">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Good luck guys</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="840215648113131591" id="message-840215648113131591">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Will help for a while</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/03b4a66d812b554e123890ed367f1cb6-7CE3B.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Viper07#4294" data-user-id="466335472432447509" style="">Viper07</span>
+
+
+        <span class="chatlog__timestamp">07-May-21 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="840216656906420275" id="message-840216656906420275">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Same</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">07-May-21 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="840218666859102249" id="message-840218666859102249">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">same</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="840218680028692481" id="message-840218680028692481">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">in for help</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="840218724098900029" id="message-840218724098900029">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">if you want send the questions i will ask my sir too</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="numnum99#7174" data-user-id="517271388109668364" style="color: rgb(255,117,0)">numnum99</span>
+
+
+        <span class="chatlog__timestamp">07-May-21 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="840218783180259409" id="message-840218783180259409">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thanks man will get back to u</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Dealer 69#6105" style="">Dealer 69</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;840218724098900029&#39;)">
+                    <span class="chatlog__reference-content">
+if you want send the questions i will ask my sir too                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/4-4551A.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nazareth#1644" data-user-id="718386079832604722" style="color: rgb(255,117,0)">bababudan</span>
+
+
+        <span class="chatlog__timestamp">07-May-21 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="840218785273348177" id="message-840218785273348177">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Who is it haha</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/c31c19566ce2a4ab71adbc2a234aacd1-07C7E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dealer 69#6105" data-user-id="727259939990667367" style="">Dealer 69</span>
+
+
+        <span class="chatlog__timestamp">07-May-21 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="840219145873260577" id="message-840219145873260577">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">topper 82</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="840219606409019453" id="message-840219606409019453">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">bas paise nahi maange</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="840219630794833980" id="message-840219630794833980">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">sala harami hain</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128545;" title="&#128545;" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/1f621-ACC0C.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="study%20group%20a%21%20-%20Zone%20A%20-%20general-zone-a%20%5B816252836635344906%5D.html_Files/7966314b8666f4f3d5c0620655d4be9e-EA2A1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Levi Ackerman#2001" data-user-id="719942376835121212" style="color: rgb(0,88,255)">Levi Ackerman</span>
+
+
+        <span class="chatlog__timestamp">19-May-21 07:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="844531873715322880" id="message-844531873715322880">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">how many people are doing marco</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="844531884456280097" id="message-844531884456280097">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">zone a</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 198 message(s)</div>
+</div>
+
+</body>
+
+</html>
